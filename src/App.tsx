@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Comp1 from "@/components/comp1";
+import {Outlet} from "react-router-dom";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -7,8 +8,8 @@ function App() {
   return (
     <>
       <div>
-        顶级组件
-        <Comp1>This is Com1</Comp1>
+        Top Component
+        <Outlet></Outlet>
       </div>
     </>
   )
