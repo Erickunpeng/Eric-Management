@@ -1,0 +1,9 @@
+$bgc: #d04646;
+body {
+  background-color: $bgc;
+  user-select: none;
+}
+
+img {
+  -webkit-user-drag: none;
+}
