@@ -1,16 +1,35 @@
-import App from "../App"
-import Home from "../views/Home"
-import About from "../views/About"
-import {BrowserRouter,Routes,Route} from "react-router-dom"
+import Home from "@/views/Home.tsx";
+import {Navigate} from "react-router-dom"
+import React, {lazy} from "react";
+const About = lazy(() => import("@/views/About.tsx"))
+const User = lazy(() => import("@/views/User.tsx"))
 
-const baseRouter = () => (
-    <BrowserRouter>
-        <Routes>
-            <Route path="/" element={<App/>}>
-                <Route path="/home" element={<Home/>}></Route>
-                <Route path="/about" element={<About/>}></Route>
-            </Route>
-        </Routes>
-    </BrowserRouter>
-)
-export default baseRouter
+
+const withLoadingComponent = (comp: JSX.Element) => {
+    return (
+        <React.Suspense fallback={<div>Loading...</div>}>
+            {comp}
+        </React.Suspense>
+    )
+}
+
+const routes = [
+    {
+        path: "/",
+        element: <Navigate to="/home"></Navigate>
+    },
+    {
+        path: "/home",
+        element: <Home></Home>
+    },
+    {
+        path: "/about",
+        element: withLoadingComponent(<About></About>)
+    },
+    {
+        path: "/user",
+        element: withLoadingComponent(<User></User>)
+    }
+]
+
+export default routes

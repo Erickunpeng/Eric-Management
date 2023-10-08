@@ -1,7 +1,7 @@
 const View = () => {
     return (
         <div className="home">
-            <p>This is a about component</p>
+            <p>This is a user component</p>
         </div>
     )
 }
